@@ -1,0 +1,13 @@
+.wrapper {
+  word-break: break-all;
+}
+
+.keyword {
+  color: var(--keyword-color-light);
+}
+
+@media (prefers-color-scheme: dark) {
+  .keyword {
+    color: var(--keyword-color-dark);
+  }
+}

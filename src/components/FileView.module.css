@@ -1,0 +1,9 @@
+.thing .bop {
+  opacity: 0%;
+  transition-duration: 250ms;
+  transition-property: opacity;
+}
+
+.thing:hover .bop {
+  opacity: 100%;
+}

@@ -1,0 +1,170 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "definitions": {
+    "anyFile": {
+      "type": "string"
+    },
+    "pngFile": {
+      "type": "string"
+    },
+    "ttfFile": {
+      "type": "string"
+    },
+    "zipFile": {
+      "type": "string"
+    },
+    "referenceObj": {
+      "type": "object",
+      "required": ["type", "id"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "reference"
+        },
+        "id": {
+          "$ref": "#/definitions/anyFile"
+        }
+      },
+      "additionalProperties": false
+    },
+    "bitmapObj": {
+      "type": "object",
+      "required": ["type", "file", "ascent", "chars"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "bitmap"
+        },
+        "file": {
+          "$ref": "#/definitions/pngFile"
+        },
+        "height": {
+          "type": "integer"
+        },
+        "ascent": {
+          "type": "integer"
+        },
+        "chars": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "spaceObj": {
+      "type": "object",
+      "required": ["type", "advances"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "space"
+        },
+        "advances": {
+          "type": "object",
+          "additionalItems": {
+            "type": "number"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "ttfObj": {
+      "type": "object",
+      "required": ["type", "file", "shift", "size", "oversample", "skip"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "ttf"
+        },
+        "file": {
+          "$ref": "#/definitions/ttfFile"
+        },
+        "shift": {
+          "type": "array",
+          "items": {
+            "type": "number"
+          },
+          "minItems": 1,
+          "maxItems": 2
+        },
+        "size": {
+          "type": "number"
+        },
+        "oversample": {
+          "type": "number"
+        },
+        "skip": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "unihexObj": {
+      "type": "object",
+      "required": ["type", "hex_file", "size_overrides"],
+      "properties": {
+        "type": {
+          "type": "string",
+          "const": "unihex"
+        },
+        "hex_file": {
+          "$ref": "#/definitions/zipFile"
+        },
+        "size_overrides": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["from", "to", "left", "right"],
+            "properties": {
+              "from": {
+                "type": "string"
+              },
+              "to": {
+                "type": "string"
+              },
+              "left": {
+                "type": "integer"
+              },
+              "right": {
+                "type": "integer"
+              }
+            },
+            "additionalProperties": false
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "title": "Schema for Minecraft font definitions",
+  "type": "object",
+  "required": ["providers"],
+  "properties": {
+    "providers": {
+      "default": true,
+      "type": "array",
+      "items": {
+        "anyOf": [
+          { "$ref": "#/definitions/referenceObj" },
+          { "$ref": "#/definitions/bitmapObj" },
+          { "$ref": "#/definitions/spaceObj" },
+          { "$ref": "#/definitions/ttfObj" },
+          { "$ref": "#/definitions/unihexObj" }
+        ]
+      }
+    }
+  },
+  "additionalProperties": false
+}
