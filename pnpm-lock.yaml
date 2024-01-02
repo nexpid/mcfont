@@ -12,8 +12,8 @@ dependencies:
     specifier: ^3.10.1
     version: 3.10.1
   lucide-react:
-    specifier: ^0.292.0
-    version: 0.292.0(react@18.0.0)
+    specifier: ^0.303.0
+    version: 0.303.0(react@18.0.0)
   monaco-editor:
     specifier: ^0.44.0
     version: 0.44.0
@@ -1873,8 +1873,8 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /lucide-react@0.292.0(react@18.0.0):
-    resolution: {integrity: sha512-rRgUkpEHWpa5VCT66YscInCQmQuPCB1RFRzkkxMxg4b+jaL0V12E3riWWR2Sh5OIiUhCwGW/ZExuEO4Az32E6Q==}
+  /lucide-react@0.303.0(react@18.0.0):
+    resolution: {integrity: sha512-B0B9T3dLEFBYPCUlnUS1mvAhW1craSbF9HO+JfBjAtpFUJ7gMIqmEwNSclikY3RiN2OnCkj/V1ReAQpaHae8Bg==}
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0
     dependencies:
